@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import ProbabilityFormula from './mathFormula';
+import Accordion from './components/Accordion';
 
 function App() {
   const [number, setNumber] = useState({
@@ -12,6 +13,25 @@ function App() {
 
   const [result, setResult] = useState('');
   const [submitted, setSubmitted] = useState(false);
+
+  const indicators = [
+    {
+      title: 'Показатель1',
+      description: 'Отягощенный акушерско-гинекологический анамнез (преждевременные роды в анамнезе, поздний выкидыш в анамнезе)',
+    },
+    {
+      title: 'Показатель2',
+      description: 'Дефект шейки матки (истмико-цервикальная недостаточность в предыдущую беременность, разрыв шейки матки в анамнезе, два и более инструментальных расширения цервикального канала в анамнезе, конизация или расширенная эксцизия шейки матки в анамнезе, лазерная вапоризация шейки матки в анамнезе)',
+    },
+    {
+      title: 'Показатель3',
+      description: 'Инфекционно-воспалительные заболевания и дисбиотические состояния при настоящей беременности (рецидивирующий бактериальный вагиноз, острый вагинит, цервицит, инфекции мочевыводящих путей, бессимптомная бактериурия)',
+    },
+    {
+      title: 'Показатель4',
+      description: 'Количество лейкоцитов в микроскопическом исследовании отделяемого из цервикального канала в I триместре настоящей беременности (количество клеток в поле зрения)',
+    },
+  ];
 
 
   function handleChange(event) {
@@ -58,8 +78,14 @@ function App() {
                   <li>Х<sub>TTR</sub> –  концентрация в сыворотке крови транстиретина (0 - менее 0,074, 1 – более 0,074)</li>
                   <li>Х<sub>С-пептид</sub> – концентрация в сыворотке крови С-пептида (0 - более 5,2 нг/мл, 1 – менее 5,2 нг/мл)</li>
           </ul> */}
+          
+          <div className="accordion-container">
+            {indicators.map((indicator, index) => (
+              <Accordion key={index} title={indicator.title} content={<p>{indicator.description}</p>} />
+            ))}
+          </div>
 
-          <div>
+          {/* <div>
             <table>
               <tbody>
                 <tr>
@@ -103,7 +129,7 @@ function App() {
 
               </tbody>
             </table>
-          </div>
+          </div> */}
 
           <p style={{ fontWeight: "bold", paddingTop: "16px" }}>Интерпретация:</p>
           <p>Более 0,413 — Высокий риск</p>
@@ -115,7 +141,7 @@ function App() {
                       <tbody>
                           <tr>
                               <th style={{width: "220px"}}>Показатель1
-                                {/* <div style={{ fontSize: "12px", color: "rgba(0, 0, 0, 0.4)" }}>0 - Нет, 1 - Да</div> */}
+                                <div style={{ fontSize: "12px", color: "rgba(0, 0, 0, 0.4)" }}>0 - Нет, 1 - Да</div>
                               </th>
                               <th>
                                   <input
@@ -131,7 +157,7 @@ function App() {
                           </tr>
                           <tr>
                               <th style={{width: "220px"}}>Показатель2
-                                {/* <div style={{ fontSize: "12px", color: "rgba(0, 0, 0, 0.4)" }}>0 - Нет, 1 - Да</div> */}
+                                <div style={{ fontSize: "12px", color: "rgba(0, 0, 0, 0.4)" }}>0 - Нет, 1 - Да</div>
                               </th>
                               <th>
                                   <input
@@ -146,7 +172,9 @@ function App() {
                               </th>
                           </tr>
                           <tr>
-                              <th style={{width: "220px"}}>Показатель3</th>
+                              <th style={{width: "220px"}}>Показатель3
+                                <div style={{ fontSize: "12px", color: "rgba(0, 0, 0, 0.4)" }}>0 - Нет, 1 - Да</div>
+                              </th>
                               <th>
                                   <input
                                       type="number"

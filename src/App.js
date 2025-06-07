@@ -17,10 +17,10 @@ function App() {
   };
 
   const calculate = () => {
-    if (values.four === '' || values.five === '') {
-      alert('Пожалуйста, заполните все обязательные поля.');
-      return;
-    }
+    // if (values.four === '' || values.five === '') {
+    //   alert('Пожалуйста, заполните все обязательные поля.');
+    //   return;
+    // }
 
     const z = (-1.968) - 0.222 * values.one + 1.766 * values.two - 0.221 * values.three + 3.037 * values.four;
     const P = (1 / (1 + Math.exp(-z))) * 100;
@@ -71,7 +71,11 @@ function App() {
           Кисты эндоцервикса по трансвагинальному УЗИ при постановке на учет по беременности
           {/* <span className="description">(количество клеток в поле зрения)</span> */}
         </label>
-        <input type="number" name="four" value={values.four} onChange={handleChange} className="input-field" required/>
+        <select name="four" value={values.four} onChange={handleChange}>
+          <option value={0}>Нет</option>
+          <option value={1}>Да</option>
+        </select>
+        {/* <input type="number" name="four" value={values.four} onChange={handleChange} className="input-field" required/> */}
       </div>
 
       <button className="calculate-button" onClick={calculate}>Рассчитать</button>

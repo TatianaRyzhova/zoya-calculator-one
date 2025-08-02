@@ -6,7 +6,7 @@ function App() {
     one: 0,
     two: 0,
     three: 0,
-    four: ''
+    // four: ''
   });
   const [result, setResult] = useState(null);
   const [risk, setRisk] = useState('');
@@ -22,10 +22,11 @@ function App() {
     //   return;
     // }
 
-    const z = (-1.968) - 0.222 * values.one + 1.766 * values.two - 0.221 * values.three + 3.037 * values.four;
+    // const z = (-1.968) - 0.222 * values.one + 1.766 * values.two - 0.221 * values.three + 3.037 * values.four;
+    const z = -3.208 + 2.088 * values.one + 2.783 * values.two + 2.381 * values.three;
     const P = (1 / (1 + Math.exp(-z))) * 100;
     setResult(P.toFixed(2));
-    setRisk(P > 45.0 ? 'Высокий риск' : 'Низкий риск');
+    setRisk(P > 30.4 ? 'Высокий риск' : 'Низкий риск');
   };
 
   return (
@@ -36,7 +37,7 @@ function App() {
       <div className="form-group">
         <label>
           Отягощенный акушерско-гинекологический анамнез
-          <span className="description">(преждевременные роды в анамнезе, поздний выкидыш в анамнезе)</span>
+          <span className="description">(преждевременные роды в анамнезе, поздний выкидыш в анамнезе, привычное невынашивание беременности, преждевременный разрыв плодных оболочек в анамнезе)</span>
         </label>
         <select name="one" value={values.one} onChange={handleChange}>
           <option value={0}>Нет</option>
@@ -46,7 +47,7 @@ function App() {
 
       <div className="form-group">
         <label>
-          Множественные кисты шейки матки (≥ 5 кист) по трансвагинальному УЗИ при постановке на учет по беременности
+          Множественные кисты шейки матки (≥ 5 кист) по результатам трансвагинального УЗИ при постановке на учет по беременности
           {/* <span className="description">(истмико-цервикальная недостаточность в предыдущую беременность, разрыв шейки матки в анамнезе, два и более инструментальных расширения цервикального канала в анамнезе, конизация или расширенная эксцизия шейки матки в анамнезе, лазерная вапоризация шейки матки в анамнезе)</span> */}
         </label>
         <select name="two" value={values.two} onChange={handleChange}>
@@ -57,25 +58,13 @@ function App() {
 
       <div className="form-group">
         <label>
-          Признаки эндоцервицита по результатам цитологического исследования при постановке на учет по беременности
+          Кисты эндоцервикса по результатам трансвагинального УЗИ при постановке на учет по беременности
           {/* <span className="description">(рецидивирующий бактериальный вагиноз, острый вагинит, цервицит, инфекции мочевыводящих путей, бессимптомная бактериурия)</span> */}
         </label>
         <select name="three" value={values.three} onChange={handleChange}>
           <option value={0}>Нет</option>
           <option value={1}>Да</option>
         </select>
-      </div>
-
-      <div className="form-group">
-        <label>
-          Кисты эндоцервикса по трансвагинальному УЗИ при постановке на учет по беременности
-          {/* <span className="description">(количество клеток в поле зрения)</span> */}
-        </label>
-        <select name="four" value={values.four} onChange={handleChange}>
-          <option value={0}>Нет</option>
-          <option value={1}>Да</option>
-        </select>
-        {/* <input type="number" name="four" value={values.four} onChange={handleChange} className="input-field" required/> */}
       </div>
 
       <button className="calculate-button" onClick={calculate}>Рассчитать</button>
